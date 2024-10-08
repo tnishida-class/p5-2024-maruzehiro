@@ -3,6 +3,7 @@ function setup() {
   let s = 50;
   let d = 40;
   createCanvas(200, 200);
+  background(255);
   let size = width / 8;
   noStroke();
   for(let i = 0; i < 8; i++){
