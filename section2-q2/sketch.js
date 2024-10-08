@@ -1,5 +1,7 @@
 // チェッカー
 function setup() {
+  let s = 50;
+  let d = 40;
   createCanvas(200, 200);
   let size = width / 8;
   noStroke();
