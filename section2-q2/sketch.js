@@ -4,7 +4,6 @@ function setup() {
   let d = 40;
   createCanvas(200, 200);
   background(255);
-  let size = width / 8;
   noStroke();
   for(let i = 0; i < 8; i++){
     for(let j = 0; j < 8; j++){
