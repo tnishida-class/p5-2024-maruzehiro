@@ -2,7 +2,7 @@
 function setup() {
   let s = 50;
   let d = 40;
-  createCanvas(200, 200);
+  createCanvas(400, 400);
   background(255);
   noStroke();
   for(let i = 0; i < 8; i++){
