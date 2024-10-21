@@ -15,7 +15,7 @@ function setup() {
   const maxR = min(width, height); // 大きさは幅と高さのうち小さい方
 
   drawCircle(black, maxR);
-  drawArcs(green, red, maxR * 0.62);
+  drawArcs(green, red, maxR * 0.8);
   drawArcs(black, cream, maxR * 0.6); // 1st
   drawArcs(green, red, maxR * 0.42); // 2nd
   drawArcs(black, cream, maxR * 0.4); // 3rd
