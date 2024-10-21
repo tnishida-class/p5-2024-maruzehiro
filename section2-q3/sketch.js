@@ -20,12 +20,6 @@ function setup() {
   drawCircle(red, maxR * 0.05);
 }
 
-function drawCircle(c, r){
-  const cx = width / 2; // 中心は (cx, cy)
-  const cy = height / 2;
-  fill(c);
-  ellipse(cx, cy, r, r);
-}
 
 function drawArcs(c1, c2, r) {
   const cx = width / 2; // 中心は (cx, cy)
