@@ -8,7 +8,7 @@ function setup() {
   createCanvas(400, 400);
   background(255);
   stroke(255);
-  strokeWeight(2);
+  strokeWeight(2.5);
 
   const cx = width / 2; // 中心は (cx, cy)
   const cy = height / 2;
