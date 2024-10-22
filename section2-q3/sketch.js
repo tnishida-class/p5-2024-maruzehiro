@@ -20,7 +20,7 @@ function setup() {
   drawArcs(black, cream, maxR * 0.75); // 1st arc
   drawArcs(green, red, maxR * 0.5); // 2nd arc
   drawArcs(black, cream, maxR * 0.45); // 3rd arc
-  drawCircle(green, maxR * 0.1); // bulat hijau 
+  drawCircle(green, maxR * 0.1); // green circle
   drawCircle(red, maxR * 0.05);
 }
 
