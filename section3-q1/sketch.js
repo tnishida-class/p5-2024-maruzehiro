@@ -1,6 +1,8 @@
 // 練習問題「心臓の鼓動のように大きくなったり小さくなったりする円」
-let count;
-let cycle;
+let size = 50;
+let count = 0;
+let cycle = 100;
+let increment = 1;
 
 function setup(){
   createCanvas(200, 200);
@@ -10,9 +12,9 @@ function setup(){
 
 function draw(){
   background(160, 192, 255);
-  count = (count + 1) % cycle;
+  count = (count + increment) % cycle;
   if (keyIsPressed) {
-    increment = 100;
+    increment = 2;
   }else{
     increment = 1;
   }
