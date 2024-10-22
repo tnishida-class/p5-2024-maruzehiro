@@ -2,14 +2,18 @@
 function setup() {
   const blue = color(0, 51, 160);
   createCanvas(270, 180);
-  // noStroke();
+  noStroke();
   background(255);
 
   let d = height / 9; // 縞1本の太さ
 
   for(let i = 0; i < 9; i++){
     // BLANK[1] (hint: 縞の色を交互に変えるには2で割った余りを使おう)
-    fill(blue)
+    if (i % 2 === 1) { //part ni sampai before rect, aku guna chatgpt 
+      fill('white'); // Even index - fill with white
+    } else {
+      fill(blue); // Odd index - fill with blue
+    }
     rect(0, i * d, width, (i + 1) * d);
   }
 
