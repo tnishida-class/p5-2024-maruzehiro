@@ -12,7 +12,7 @@ function draw(){
   background(160, 192, 255);
   count = (count + 1) % cycle;
   if (keyIsPressed) {
-    increment = 2;
+    increment = 100;
   }else{
     increment = 1;
   }
