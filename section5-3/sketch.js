@@ -26,7 +26,7 @@ function isLeapYear(y){
 }
 
 function daysInYear(y){
-  // BLANK[1]
+  // BLANK[1]↓
   if(y == i){
     return isLeapYear(y) ? 366 : 365;
   }
@@ -53,7 +53,14 @@ function dayOfYear(y, m, d){
 }
 
 function dayOfWeek(y, m, d){
-  // BLANK[2]
+  // BLANK[2]↓ // 結果は0(=日曜日), 1(=月曜日), ... 6(=土曜日)としましょう。
+  // ヒント：曜日がわかっている基準日を1つ決めて、その基準日からの日数を7で割った余りを計算する方針で作れます。
+  let count = 0;
+  for(let i = 1; i < m; i++){
+    count += daysOfWeek(y, m, d);
+  }
+  return (d % 7 == 0) && (y % 7 != 0) || (y % 400 == 0);
+  
 }
 
 function dayOfWeekAsString(dow){
