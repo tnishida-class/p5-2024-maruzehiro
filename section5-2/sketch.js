@@ -7,7 +7,7 @@ function setup(){
   crossmark(10, 10, 90, 90);
   ngmark(150, 50, 80);
   star(250, 50, 40);
-  regularPolygon(100, 350, 50, 40) // ?? n=7 or 100 tu entah la utk apa ??
+  regularPolygon(7, 350, 50, 40) // n=7
 }
 
 function crossmark(x1, y1, x2, y2){
@@ -39,8 +39,8 @@ function star(cx, cy, r){
 // ヒント：星を書く関数をほんの少し変えたらできます
 function regularPolygon(n, cx, cy, r){
   beginShape();
-  for(var i = 0; i < 7; i++){
-    let theta = PI * i * 2 / 7; //source: https://www.scienceprimer.com/drawing-regular-polygons-javascript-canvas
+  for(var i = 0; i < n; i++){
+    let theta = PI * i * 2 / n; //source: https://www.scienceprimer.com/drawing-regular-polygons-javascript-canvas
     let x = cx + cos(theta) * r;
     let y = cy + sin(theta) * r;
     vertex(x,y);
