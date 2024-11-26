@@ -26,7 +26,10 @@ function isLeapYear(y){
 }
 
 function daysInYear(y){
-  // BLANK[1]
+  // BLANK[1]↓
+  if(y == i){
+    return isLeapYear(y) ? 366 : 365;
+  }
 }
 
 function daysInMonth(y, m){
@@ -42,7 +45,7 @@ function daysInMonth(y, m){
 }
 
 function dayOfYear(y, m, d){
-  let count = 0;
+  let count = 0; 
   for(let i = 1; i < m; i++){
     count += daysInMonth(y, i);
   }
@@ -50,8 +53,27 @@ function dayOfYear(y, m, d){
 }
 
 function dayOfWeek(y, m, d){
-  // BLANK[2]
+  // BLANK[2]↓ // 結果は0(=日曜日), 1(=月曜日), ... 6(=土曜日)としましょう。
+  // ヒント：曜日がわかっている基準日を1つ決めて、その基準日からの日数を7で割った余りを計算する方針で作れます。
+    // Reference date: January 1, 2023 (Sunday)
+    const referenceYear = 2023;
+    const referenceMonth = 1;
+    const referenceDay = 1;
+    const referenceWeekDay = 0; // Sunday
+  
+    // Calculate the day of the year for both the reference date and the target date
+    const referenceDayOfYear = dayOfYear(referenceYear, referenceMonth, referenceDay);
+    const targetDayOfYear = dayOfYear(y, m, d);
+  
+    // Calculate the difference in days
+    let differenceInDays = targetDayOfYear - referenceDayOfYear;
+  let count = 0; // 1.jan.23 (sun)
+  for(let i = 1; i < m; i++){
+    count += daysInMonth(y, i);
+  }
+  return count % 7;
 }
+
 
 function dayOfWeekAsString(dow){
   const a = ["日", "月", "火", "水", "木", "金", "土", "日"];

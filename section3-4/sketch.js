@@ -26,7 +26,7 @@ function draw(){
 }
 
 function keyPressed(){
-  if(key == " "){　// スペースキーを押したらリセット
+  if(key == " "){ // スペースキーを押したらリセット
     x = width / 2;
     y = height / 2;
     vx = 0;
