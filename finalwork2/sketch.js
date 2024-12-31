@@ -1,40 +1,99 @@
-let s = 70;
-let balls = []; // 配列を用意して
-let b1 = { x: 50, y: 50, vx: 3, vy: 0, size: 10 }; // ボール１のオブジェクトを作って
-balls.push(b1); // 配列に追加
-let b2 = { x: 40, y: 40, vx: 0, vy: 3, size: 20 }; // ボール２のオブジェクトを作って
-balls.push(b2); // またもや配列に追加
+let ellipses = [];
 
+const g = 0.3; 
+const vyMax = 20;
+const columns = 16;
+const rows = 7; 
 
-function setup() {
-  createCanvas(windowWidth, windowHeight); // Create a canvas that fills the window
+function setup(){
+  createCanvas(windowWidth, windowHeight);
+  for (let i = 0; i < columns; i++) {
+    for (let j = 0; j < rows; j++) {
+      let ellipseObj = {
+        m: 40,
+        x: 150 + i * 75, 
+        y: 150 + j * 75, 
+        vx: 2,
+        vy: 2,
+        grabbed: false,
+        mouseActive: true, // Individual mouse active state
+        balls: [],
+        ballsCreated: false
+      };
+      ellipses.push(ellipseObj);
+    }
+  }
 }
 
-function draw() {
-  background(160, 192, 255); // Set the background color
-  
-  fill(225); // Set the fill color to blue
-  stroke(0); // Set the stroke color to red
-  strokeWeight(2); // Set the stroke weight
+function mousePressed(){
+  for (let i = 0; i < ellipses.length; i++) {
+    let e = ellipses[i];
+    e.grabbed = dist(mouseX, mouseY, e.x, e.y) < 30; 
+  }
+}
 
-  rect(50, 50, 500, 500); // Draw a rectangle at (50, 50) with width 200 and height 100
-  rect(80, 80, 450, 450);
-  ellipse(175,175, s)
-  ellipse(300,175, s)
-  ellipse(425,175, s)
-  ellipse(175,300, s)
-  ellipse(300,300, s)
-  ellipse(425,300, s)
-  ellipse(175,425, s)
-  ellipse(300,425, s)
-  ellipse(425,425, s)
+function draw(){
+  background(5, 39, 94); 
+  stroke(0); 
+  strokeWeight(1.5); 
+
+  fill(131, 137, 160);
+  rect(50, 50, 1320, 640); 
+  fill(159, 165, 187);
+  rect(80, 80, 1260, 580);
+
+  fill(255);
+  textSize(100);
+  textFont("serif");
+  text("BUBBLEWRAP!", 68, 100);
+
+  for (let i = 0; i < ellipses.length; i++) {
+    let e = ellipses[i];
+    ellipse(e.x, e.y, e.m);
+    
+    if(mouseIsPressed && e.mouseActive && e.grabbed){
+      e.m += 0.5;
+    }
+    
+    if(e.m >= 60 && !e.ballsCreated){
+      e.m = 5;
+      e.mouseActive = false; // Disable mouseIsPressed effect for this ellipse
+      createBalls(e); // Create balls once for this ellipse
+      e.ballsCreated = true; // Ensure balls are created only once
+    }
+
+    // Update and draw each ball in the array for this ellipse
+    for(let j = 0; j < e.balls.length; j++){
+      let ball = e.balls[j];
+      ellipse(ball.x, ball.y, 10);
+      ball.x += ball.vx;
+      ball.y += ball.vy;
+      ball.vy += g;
+    }
+  }
+}
+
+function createBalls(e) {
+  for(let i = 0; i < 8; i++){
+    let ball = {
+      x: e.x,
+      y: e.y,
+      vx: random(-2, 2),
+      vy: random(-2, 2)
+    };
+    e.balls.push(ball);
+  }
 }
 
 function keyPressed(){
-  if(key == " "){s = s+5} 
-  if(s>100){s=20 || popballs}
-  else if(keyCode == ESCAPE){s=70}
+  if(key == " "){
+    for (let i = 0; i < ellipses.length; i++) {
+      let e = ellipses[i];
+      e.m = 40;
+      e.grabbed = false;
+      e.mouseActive = true; // Reactivate mouse for this ellipse
+      e.balls = []; // Clear the array
+      e.ballsCreated = false; // Allow balls to be created again
+    }
+  }
 }
-  
-function popballs(){}
-  
