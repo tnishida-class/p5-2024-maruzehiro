@@ -1,6 +1,7 @@
 //　テキスト「オブジェクト」
-// 練習問題：ボールのサイズをランダムに変更してみよう
-// 練習問題：何も操作しなくてもボールが湧いてくる機能を追加しよう
+// 練習問題(lv1)：ボールのサイズをランダムに変更してみよう
+//  -> ヒント：オブジェクトにキー size を追加する
+// 練習問題(lv10)：何も操作しなくてもボールが湧いてくる機能を追加しよう
 
 let balls;
 
@@ -23,7 +24,7 @@ function mouseDragged(){
   const dx = mouseX - pmouseX;
   const dy = mouseY - pmouseY;
   if(mag(dx, dy) > 5){
-    const b = { x: mouseX, y: mouseY, size: 20, vx: dx, vy: dy };
+    const b = { x: mouseX, y: mouseY, size: random(10, 50), vx: dx, vy: dy };
     balls.push(b);
   }
 }
