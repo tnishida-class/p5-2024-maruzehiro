@@ -8,13 +8,6 @@ function setup() {
   generateQuestion();
 }
 
-function draw() {
-  background(160, 192, 255);
-  shapes.forEach(shape => {
-    drawShape(shape);
-  });
-}
-
 function generateQuestion() {
   currentQuestion = random(kinshipCodes);
   document.getElementById('question').innerText = `スペースキーでスタート！出てくる白い▢は自分('ego')。
@@ -31,9 +24,16 @@ function generateQuestion() {
   clearCanvas();
 }
 
+function draw() {
+  background(160, 192, 255);
+  shapes.forEach(shape => {
+    drawShape(shape);
+  });
+}
+
 function drawShape(shape) {
   fill(shape.color);
-  noStroke();
+  stroke(0);
   if (shape.type === 'circle') {
     ellipse(shape.x, shape.y, shape.size * 2);
   } else if (shape.type === 'square') {
@@ -57,19 +57,54 @@ function drawShape(shape) {
 
 function keyPressed() {
   if (key === 'c' || key === 'C') {
-    shapes.push({ type: 'circle', x: mouseX, y: mouseY, size: 30, color: 'pink' });
+    let circle = {
+      type: 'circle',
+      x: mouseX,
+      y: mouseY,
+      size: 30,
+      color: 'pink'
+    };
+    shapes.push(circle);
   } else if (key === 't' || key === 'T') {
-    shapes.push({ type: 'triangle', x: mouseX, y: mouseY, size: 30, color: 'blue' });
+    let triangle = {
+      type: 'triangle',
+      x: mouseX,
+      y: mouseY,
+      size: 30,
+      color: 'blue'
+    };
+    shapes.push(triangle);
   } else if (key === ' ') {
     // Check if a white square already exists
     let squareExists = shapes.some(shape => shape.type === 'square' && shape.color === 'white');
     if (!squareExists) {
-      shapes.push({ type: 'square', x: width / 2, y: height / 2, size: 30, color: 'white' });
+      let square = {
+        type: 'square',
+        x: width / 2,
+        y: height / 2,
+        size: 30,
+        color: 'white'
+      };
+      shapes.push(square);
     }
   } else if (key === '/') {
-    shapes.push({ type: 'verticalLine', x: mouseX, y: mouseY, length: 50, color: 'black' });
+    let verticalLine = {
+      type: 'verticalLine', 
+      x: mouseX, 
+      y: mouseY, 
+      length: 50, 
+      color: 'black' 
+    };
+    shapes.push(verticalLine);
   } else if (key === '-') {
-    shapes.push({ type: 'horizontalLine', x: mouseX, y: mouseY, length: 100, color: 'black' });
+    let horizontalLine = {
+      type: 'horizontalLine', 
+      x: mouseX, 
+      y: mouseY, 
+      length: 100, 
+      color: 'black'
+    };
+    shapes.push(horizontalLine);
   }
 }
 
@@ -121,8 +156,4 @@ function sign(x1, y1, x2, y2, x3, y3) {
 
 function clearCanvas() {
   shapes = [];
-}
-
-function windowResized() {
-  resizeCanvas(1300, 390);
 }
