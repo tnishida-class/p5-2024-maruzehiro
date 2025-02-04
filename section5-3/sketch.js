@@ -74,23 +74,28 @@ function dayOfYear(y, m, d){
 function dayOfWeek(y, m, d){
   // BLANK[2]↓ // 結果は0(=日曜日), 1(=月曜日), ... 6(=土曜日)としましょう。
   // ヒント：曜日がわかっている基準日を1つ決めて、その基準日からの日数を7で割った余りを計算する方針で作れます。
-    // Reference date: January 1, 2023 (Sunday)
-    const referenceYear = 2023;
-    const referenceMonth = 1;
-    const referenceDay = 1;
-    const referenceWeekDay = 0; // Sunday
-  
-    // Calculate the day of the year for both the reference date and the target date
-    const referenceDayOfYear = dayOfYear(referenceYear, referenceMonth, referenceDay);
-    const targetDayOfYear = dayOfYear(y, m, d);
-  
-    // Calculate the difference in days
-    let differenceInDays = targetDayOfYear - referenceDayOfYear;
-  let count = 0; // 1.jan.23 (sun)
-  for(let i = 1; i < m; i++){
-    count += daysInMonth(y, i);
+   // Reference date: 1970-01-01 (Thursday, day code 4)
+  const referenceYear = 1970;
+  const referenceDayOfWeek = 4; // Thursday
+
+  // Step 1: Calculate the total days difference
+  let totalDays = 0;
+
+  // Add days for full years between the reference year and the given year
+  for (let year = referenceYear; year < y; year++) {
+    totalDays += isLeapYear(year) ? 366 : 365;
   }
-  return count % 7;
+
+  // Add days for full months in the given year
+  for (let month = 1; month < m; month++) {
+    totalDays += daysInMonth(y, month);
+  }
+
+  // Add remaining days in the current month
+  totalDays += d - 1;
+
+  // Step 2: Calculate the weekday using modulo 7
+  return (referenceDayOfWeek + totalDays) % 7;
 }
 
 
