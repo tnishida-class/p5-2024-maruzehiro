@@ -15,9 +15,28 @@ function setup(){
 }
 
 function calendar(y, m){
+  background(255);
+  textSize(16);
+  textAlign(CENTER, CENTER);
+
+  // Draw the header: days of the week
+  const dayLabels = ["日", "月", "火", "水", "木", "金", "土"];
+  for (let i = 0; i < 7; i++) {
+    text(dayLabels[i], 25 + i * 25, 20); // Draw day names
+  }
   let dow = dayOfWeek(y, m, 1);
+  let x = dow; // X position based on the starting day of the week
+  let yRow = 1; // Y position starts below headers
+
   for(let d = 1; d <= daysInMonth(y, m); d++){
-    // BLANK[3] (hint: まずは daysInYear, dayOfWeek を作ろう)
+    // BLANK[3] (hint: まずは daysInYear, dayOfWeek を作ろう)↓
+    text(d, 25 + x * 25, 40 + yRow * 25); // Display day at calculated position
+
+    x++;
+    if (x == 7) { // Wrap to next row after Saturday
+      x = 0;
+      yRow++;
+    }
   }
 }
 
