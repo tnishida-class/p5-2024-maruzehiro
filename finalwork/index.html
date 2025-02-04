@@ -3,11 +3,18 @@
   <head>
     <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
     <meta charset="UTF-8">
-    <style> body {padding: 0; margin: 0;} canvas { display: block }</style>
+    <style> body {font-family:"MS Pゴシック",sans-serif; padding: 100; margin: 100;} canvas { display: block }</style>
     <script src="../p5.min.js"></script>
     <script src="sketch.js"></script>
     <title>finalwork</title>
   </head>
-  <body>
-  </body>
+ <body>
+  <h1>文化人類学 ~系図作成の練習ゲーム~ (Cultural Anthropology Genealogy Diagram Game)</h1>
+  <div id="question"></div>
+  <div id="controls">
+    <button onclick="generateQuestion()">新しい質問</button>
+    <button onclick="clearCanvas()">クリア</button>
+  </div>
+  <script src="script.js"></script>
+ </body>
 </html>
